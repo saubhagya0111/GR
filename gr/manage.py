@@ -15,7 +15,11 @@ def main():
             "available on your PYTHONPATH environment variable? Did you "
             "forget to activate a virtual environment?"
         ) from exc
+if __name__ == "__main__":
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "your_project_name.settings")  # Ensure this line is present
+    from django.core.management import execute_from_command_line
     execute_from_command_line(sys.argv)
+execute_from_command_line(sys.argv)
 
 
 if __name__ == '__main__':
