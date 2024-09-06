@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -41,13 +42,23 @@ INSTALLED_APPS = [
     'rest_framework',
 ]
 
-# settings.py
+
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer',  # This allows for a browsable API
     )
 }
+
+
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',  
+]
+
+
+LOGIN_REDIRECT_URL = 'home'  # Redirect after successful login
+LOGOUT_REDIRECT_URL = 'login'  # Redirect after successful logout
 
 
 MIDDLEWARE = [
@@ -62,10 +73,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'gr.urls'
 
+DEBUG=True
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # Add a global templates folder if needed
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

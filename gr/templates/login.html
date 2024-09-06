@@ -1,0 +1,9 @@
+<!-- your_app/templates/your_app/login.html -->
+<h2>Login</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}  <!-- Renders the login form fields (username and password) -->
+    <button type="submit">Login</button>
+</form>
+
+<p>Don't have an account? <a href="{% url 'signup' %}">Sign up here</a>.</p>

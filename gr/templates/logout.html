@@ -1,0 +1,11 @@
+<!-- logout.html or inside any template -->
+<h2>You have been logged out</h2>
+<p>Thank you for visiting.</p>
+
+<a href="{% url 'login' %}">Login again</a>
+
+<!-- Logout button using POST method -->
+<form method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button type="submit">Logout</button>
+</form>
