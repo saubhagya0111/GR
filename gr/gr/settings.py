@@ -40,8 +40,26 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'quotes',
     'rest_framework',
+    'social_django',
 ]
+# settings.py
+# Google OAuth credentials
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '483620115558-533hul9vhqb2lum98i267nq4et2pmf66.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
 
+# Facebook OAuth credentials
+SOCIAL_AUTH_FACEBOOK_KEY = 'your-facebook-app-id'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'your-facebook-app-secret'
+
+# Redirect URLs after login/logout
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'login'
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.google.GoogleOAuth2',  # Google backend
+    'social_core.backends.facebook.FacebookOAuth2',  # Facebook backend
+    'django.contrib.auth.backends.ModelBackend',  # Default backend
+)
 
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (
@@ -86,6 +104,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },

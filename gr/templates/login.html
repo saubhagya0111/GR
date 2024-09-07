@@ -1,9 +1,10 @@
-<!-- your_app/templates/your_app/login.html -->
+<!-- login.html -->
 <h2>Login</h2>
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}  <!-- Renders the login form fields (username and password) -->
+    {{ form.as_p }}  <!-- Your regular login form -->
     <button type="submit">Login</button>
 </form>
 
-<p>Don't have an account? <a href="{% url 'signup' %}">Sign up here</a>.</p>
+<p>Or log in with:</p>
+<a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a>

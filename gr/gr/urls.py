@@ -11,6 +11,7 @@ urlpatterns = [
     # Custom signup view
     path('signup/', views.signup, name='signup'),
     # Built-in login and logout views
+    path('social-auth/', include('social_django.urls', namespace='social')),  # Social Auth URLs
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='logout.html'), name='logout'),
 ]   
