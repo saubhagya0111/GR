@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+from decouple import config  # Import config from python-decouple
 from pathlib import Path
 import os
 
@@ -43,9 +44,17 @@ INSTALLED_APPS = [
     'social_django',
 ]
 # settings.py
+# settings.py
+
+
 # Google OAuth credentials
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '483620115558-533hul9vhqb2lum98i267nq4et2pmf66.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('GOOGLE_OAUTH2_KEY', default='')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('GOOGLE_OAUTH2_SECRET', default='')
+
+# Facebook OAuth credentials
+SOCIAL_AUTH_FACEBOOK_KEY = config('FACEBOOK_OAUTH2_KEY', default='')
+SOCIAL_AUTH_FACEBOOK_SECRET = config('FACEBOOK_OAUTH2_SECRET', default='')
+
 
 # Facebook OAuth credentials
 SOCIAL_AUTH_FACEBOOK_KEY = 'your-facebook-app-id'
